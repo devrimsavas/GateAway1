@@ -1,0 +1,40 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00b7ff;
+}
+
+/* Basic styling for the table */
+#resulttable {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 18px;
+  text-align: left;
+}
+
+/* Header row styling */
+#resulttable thead th {
+  background-color: #050505;
+  color: white;
+  padding: 2px;
+}
+
+/* Body row styling */
+#resulttable tbody td {
+  padding: 2px;
+  border: 1px solid #ddd;
+}
+
+/* Alternating row colors */
+#resulttable tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Hover effect for rows */
+#resulttable tbody tr:hover {
+  background-color: #ddd;
+}

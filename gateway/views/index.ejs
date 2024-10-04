@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <h1>
+    <%= title %>
+  </h1>
+  <p>
+    <%= title %>
+  </p>
+  <h3> Connecting ASP.NET Core on 5198 and Node.js on 3001 via Gateway 8000 </h3>
+  <button type="button" id="infoButton"> GET AND PROCESS </button>
+  <div id="shownumber">
+
+  </div>
+
+  <div id="tablesection">
+    <table id="resulttable">
+
+      <thead>
+        <tr>
+          <th>generated in ASP Core</th>
+          <th>Processed in Node.js </th>
+        </tr>
+      </thead>
+      <tbody>
+        <!--dynamic results-->
+      </tbody>
+
+
+    </table>
+  </div>
+
+  <script>
+    document.getElementById("infoButton").addEventListener("click", function () {
+      try {
+        fetch("http://localhost:8000/producenumber")
+          .then((response) => {
+            if (!response.ok) {
+              console.error("Error fetching from ASP CORE server");
+              return;
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data.numberFromASP);
+
+            let numberToSend = data.numberFromASP;
+
+            // Send this number to NODE server
+            fetch("http://localhost:8000/convertnumber", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ rawNumber: numberToSend })
+            })
+              .then((response) => {
+                if (!response.ok) {
+                  console.error("Error from server");
+                  return;
+                }
+                return response.json();
+              })
+              .then((data) => {
+                console.log(data);
+                // Output in two lines
+
+                document.querySelector("#resulttable tbody").innerHTML += `<tr><td>${data.rawNumber}</td><td>${data.processedNumber}</td></tr>`
+              });
+          });
+      } catch (error) {
+        console.log("Error", error);
+      }
+    });
+  </script>
+</body>
+
+</html>

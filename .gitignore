@@ -1,0 +1,17 @@
+# Ignore node_modules in all folders
+producerandomnumber/node_modules/
+getnumbers/node_modules/
+getways/node_modules/
+
+# Ignore build artifacts (ASP.NET Core)
+producerandomnumber/bin/
+producerandomnumber/obj/
+
+# Ignore environment variables
+producerandomnumber/.env
+getnumbers/.env
+getways/.env
+
+# Other standard ignores
+*.log
+*.tmp
