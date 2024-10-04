@@ -39,9 +39,12 @@
   </div>
 
   <script>
+
+    const baseUrl = window.location.origin;
+    console.log(`your base URL is  ${baseUrl}`);
     document.getElementById("infoButton").addEventListener("click", function () {
       try {
-        fetch("http://localhost:8000/producenumber")
+        fetch(`${baseUrl}/producenumber`)
           .then((response) => {
             if (!response.ok) {
               console.error("Error fetching from ASP CORE server");
@@ -55,7 +58,7 @@
             let numberToSend = data.numberFromASP;
 
             // Send this number to NODE server
-            fetch("http://localhost:8000/convertnumber", {
+            fetch(`${baseUrl}/convertnumber`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ rawNumber: numberToSend })
