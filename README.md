@@ -4,6 +4,11 @@ This tutorial demonstrates the basic usage of microservices. It shows how to con
 
 The application generates a random number using an ASP.NET Core backend. The gateway forwards this number to a Node.js server, which calculates the square of the number and sends the result back. The process is kept as simple as possible to demonstrate the core functionality of microservice communication.
 
+## the web page
+
+this app is deployed on azure and the link is
+https://mygatewaydsy.azurewebsites.net/
+
 ## Structure
 
 - **Gateway Folder**: Written in Node.js. This folder contains the gateway app that manages communication between the services. Since the app uses `concurrently`, you do not need to run the other services manually.
