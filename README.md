@@ -7,7 +7,8 @@ The application generates a random number using an ASP.NET Core backend. The gat
 ## the web page
 
 this app is deployed on azure and the link is
-https://mygatewaydsy.azurewebsites.net/
+
+https://gateaway1.onrender.com/
 
 ## Structure
 
