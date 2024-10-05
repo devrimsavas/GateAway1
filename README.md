@@ -49,6 +49,31 @@ The client function on the gateway interface processes the data and dynamically 
 
    Ensure you adjust your folders accordingly if you use a different setup (like Python or other frameworks).
 
+4. **Node Gateway Interface**:
+   If you use node to create "gateway" interface , you should install following packages
+   `npm i cors express express-http-proxy`
+   this will add CORS and express-http-proxy packages to your GATEWAY
+
+   then you can create your interface `index.js`
+
+```bash
+
+   const express = require("express");
+const cors = require("cors");
+const proxy = require("express-http-proxy");
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+app.use("/colors", proxy("http://localhost:3000"));
+app.use("/cities", proxy("http://localhost:3001"));
+
+app.listen(8000, () => {
+  console.log("Gateway is running on Port 8000");
+});
+```
+
 ## Important Note
 
 Make sure to install `concurrently` to avoid having to activate each folder manually. Here’s the relevant section of the `package.json` script for this project:
@@ -121,6 +146,12 @@ build
 run
 
 `docker run -p 8000:8000 -p 3001:3001 -p 5198:5198 gateway-tutorial `
+
+## DEPLOYING
+
+if you will deploy this app to a web service : do not forget to change `localhost` to
+baseURl in client functions
+`const baseUrl = window.location.origin;`
 
 ## Author
 
